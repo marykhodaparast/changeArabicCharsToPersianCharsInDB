@@ -30,7 +30,7 @@ function changeCharsOfEachTable($pdo, $table_name, $fields)
     }
     $setPhrase = [];
     for($i = 0; $i < $rowCount; $i++){
-        $setPhrase[$i] = 'x';
+        $setPhrase[$i] = '';
     }
     for ($i = 0; $i < $rowCount; $i++) {
         foreach ($values[$i] as $key => $value) {
