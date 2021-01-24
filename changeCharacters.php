@@ -29,6 +29,9 @@ function changeCharsOfEachTable($pdo, $table_name, $fields)
         }
     }
     $setPhrase = [];
+    for($i = 0; $i < $rowCount; $i++){
+        $setPhrase[$i] = 'x';
+    }
     for ($i = 0; $i < $rowCount; $i++) {
         foreach ($values[$i] as $key => $value) {
             if (gettype($key) == "string") {
