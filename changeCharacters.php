@@ -1,4 +1,7 @@
 <?php
+$db_name="Your_db_name";
+$db_user = "Your_user";
+$db_password = "Your_password";
 function arabicToPersian($inp)
 {
     $out = str_replace(array('ي', 'ك'), array('ی', 'ک'), $inp);
@@ -41,14 +44,14 @@ function changeCharsOfEachTable($pdo, $table_name, $fields)
         $setPhrase[$i] = substr($setPhrase[$i],0,-1);
         $setPhrase[$i].= ' WHERE id = '.$values[$i][0];
     }
-    for ($i = 0; $i < $rowCount; $i++) {
+    for ($i = 1; $i < $rowCount; $i++) {
         $sql = "UPDATE ". $table_name. " SET " . $setPhrase[$i];
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     }
 }
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=aref_jazb', 'root', 159951);
+    $pdo = new PDO('mysql:host=localhost;dbname='.$db_name.';charset=utf8;', $db_user, $db_password);
     echo "we are connected to db<br>";
     changeCharsOfEachTable($pdo, 'students', ["first_name","last_name","school","introducing"]);
     changeCharsOfEachTable($pdo,'users',["first_name","last_name","education","major","home_address","work_address"]);
